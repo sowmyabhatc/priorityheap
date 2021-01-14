@@ -2,8 +2,7 @@
 #include <stddef.h>
 #include "scheduler.h"
 #include <stdio.h>
-
-
+#include <string.h>
 
 Process process_new (uint32_t pid, uint32_t at, uint32_t et,uint32_t priority)
 {
@@ -59,7 +58,7 @@ uint32_t heap_size(Heap *heap){
 assert(heap->size >0 && heap->size < HEAP_MAX_SIZE);
 return(heap->size);
 }
-
+/*
 Heap* heap_sort(Heap *heap){
 assert(heap->size >0 && heap->size < HEAP_MAX_SIZE);
 uint32_t idx=heap->size;
@@ -69,7 +68,7 @@ for(idx=heap->size; idx>1 ;idx--){  //idx-- bcz after every swap we are going to
 }
 return heap;
 }
-
+*/
 Heap  heap_new(Process data[],uint32_t len){
 assert(len>0 && len<HEAP_MAX_SIZE );
 
@@ -106,14 +105,14 @@ return heap;
 
 int32_t heap_extract_max(Heap *heap){
 assert(heap->size >0 && heap->size < HEAP_MAX_SIZE);
-Process max=heap->data[1];
+int32_t max=heap->data[1].pid;
 Process last=heap->data[heap->size];
 heap->data[1]=last;
 heap->size= heap->size-1;
 _heapify_(heap->data,heap->size,1);
 
 
-return max.pid;
+return max;
 
 }
 
@@ -141,6 +140,7 @@ void fcfs_algorithm(Heap *heap)
 {
     //while (q->count > 0)
     //{
+         assert(heap->size >0 && heap->size < HEAP_MAX_SIZE);
         _schedule_(heap);
         heap_extract_max(heap);
         //printf ("pid: %d\twait time: %d\tTAT: %d\n",res->pid,res->wt,res->tat);

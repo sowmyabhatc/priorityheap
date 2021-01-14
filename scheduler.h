@@ -24,7 +24,7 @@ Process  data[HEAP_MAX_SIZE];
 
 Process  process_new(uint32_t pid, uint32_t at, uint32_t et,uint32_t priority);
 Heap    heap_new(Process *p,uint32_t len); //Build a max heap
-Heap*   heap_sort(Heap *heap);
+//Heap*   heap_sort(Heap *heap);
 Heap*   heap_insert(Heap *heap,Process *p);
 Heap*   heap_test(Heap *heap);
 int32_t heap_get_max(Heap *heap);
